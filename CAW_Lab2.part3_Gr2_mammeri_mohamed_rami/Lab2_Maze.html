@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0071)https://courses.cs.washington.edu/courses/cse190m/11su/labs/6/maze.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><!--
+	CSE 190 M Lab 6 XHTML file
+	You should download this file for your lab, but you should not edit its contents.
+	--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Maze!</title>
+		
+		<!-- provided files; do not modify -->
+		<link href="Lab2_maze.css" type="text/css" rel="stylesheet">
+		<script src="./Maze_files/prototype.js" type="text/javascript"></script>
+		
+		<!-- your code -->
+		<script src="./Maze_files/maze.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<h1>The Amazing Mouse Maze!</h1>
+		<h2 id="status">Move your mouse over the "S" to begin.</h2>
+		
+		<p>Wins: <span id="win-count">0</span></p>
+		<div id="maze">
+			<div id="start">S</div>
+			<div class="boundary" id="boundary1"></div>
+			<div class="boundary"></div>
+			<div class="boundary"></div>
+			<div class="boundary"></div>
+			<div class="boundary"></div>
+			<div id="end">E</div>
+		</div>
+		
+		<p>
+			The object of this game is to guide the mouse cursor through the start area and get to the end area.  Be sure to avoid the walls:
+		</p>
+		
+		<div class="boundary example"></div>
+		
+		<p>
+			Good luck!
+		</p>
+		<audio id="winSound" src="c:\Users\MIS-Computer\Desktop\CAW_Lab2.part2_Gr2_mammeri_mohamed_rami/win.mp3"></audio>
+		<audio id="winSound1" src="c:\Users\MIS-Computer\Desktop\CAW_Lab2.part2_Gr2_mammeri_mohamed_rami/lose.mp3"></audio>
+		<div id="firework-container">
+			<div id="firework">
+			  <div class="firework-particle"></div>
+			  <div class="firework-particle"></div>
+			  <div class="firework-particle"></div>
+			  
+			</div>
+		  </div>
+
+		<script>
+
+			function changeWallColorRed(walls) {
+				for (var i = 0; i < walls.length; i++) {
+					walls[i].style.backgroundColor = "red";
+				}
+			}
+
+
+			window.onload = function () {
+
+				var walls = document.getElementsByClassName("boundary");
+				var end = document.getElementById("end");
+				var status = document.getElementById("status");
+
+				var hasLost = false;
+				var hasWon = false;
+
+
+				
+				var winCount = 0;
+				function handleWin() {
+					if (!hasLost) { 
+						if (!hasWon) {
+							status.textContent = "You win!";
+							hasWon = true;
+							
+							winCount++;
+							var winCountElement = document.getElementById("win-count");
+							winCountElement.textContent = winCount;
+
+							var winSound = document.getElementById("winSound");
+                            winSound.play();
+
+							var firework = document.getElementById("firework");
+							firework.style.display = "block";
+
+							setTimeout(function () {
+								firework.style.display = "none";
+							}, 1000); 
+						}
+					}
+				}
+
+				function handleLose() {
+					if (!hasWon) {
+						if (!hasLost) {
+							status.textContent = "You lose!";
+							for (var i = 0; i < walls.length; i++) {
+								walls[i].style.backgroundColor = "red";
+							}
+							hasLost = true;
+							var winSound1 = document.getElementById("winSound1");
+                            winSound1.play();
+						}
+					}
+				}
+
+				end.addEventListener("mouseenter", handleWin);
+				for (var i = 0; i < walls.length; i++) {
+					walls[i].addEventListener("mouseover", handleLose);
+				}
+
+				var start = document.getElementById("start");
+
+
+				function resetMaze() {
+					for (var i = 0; i < walls.length; i++) {
+						walls[i].style.backgroundColor = "#eeeeee";
+					}
+
+					hasWon = false;
+					hasLost = false;
+					status.textContent = "Game in progress...";
+				}
+				function attachMazeLeaveEvent() {
+					var maze = document.getElementById("maze");
+					maze.addEventListener("mouseleave", handleLose);
+
+
+
+				}
+				function Maze() {
+					status.textContent = "Game in progress...";
+					start.disabled = true;
+					attachMazeLeaveEvent();
+
+				}
+
+
+				start.addEventListener("click", resetMaze);
+				start.addEventListener("mouseenter", Maze);
+
+			};
+			var secretKeyCombination = ["m", "a", "z", "e"];
+				var keyPresses = [];
+
+				document.addEventListener("keydown", function (event) {
+					keyPresses.push(event.key);
+
+
+					if (keyPresses.join("").includes(secretKeyCombination.join(""))) {
+
+						handleEasterEgg();
+
+						keyPresses = [];
+					}
+				});
+
+				function handleEasterEgg() {
+
+					alert("You found the Easter egg!");
+				}
+
+
+
+		</script>
+	
+
+</body></html>
