@@ -1,0 +1,32 @@
+/* Task.css */
+.task-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .subtasks-container {
+    margin-top: 10px;
+  }
+  
+  .subtask {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  .lol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .lol1 {
+    display: flex;
+    gap: 10px; 
+  }
+  
