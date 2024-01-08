@@ -1,0 +1,50 @@
+#works{
+    margin: 0 auto;
+    min-height: calc(100vh - 4rem);
+    width: 100vw;
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.worksTitle{
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+.worksDesc{
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    
+}
+
+.worksImgs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 65rem;
+    flex-wrap: wrap;
+    width: 100vw;
+    
+}
+
+.worksImg{
+    object-fit: cover;
+    height: 20rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.worksbtn{
+    margin: 3rem 0;
+    background: white;
+    color: black;
+    border: none;
+    padding: 0.5 2.5rem;
+    border-radius: 2rem;
+    padding: 0.75rem 1rem;
+}
